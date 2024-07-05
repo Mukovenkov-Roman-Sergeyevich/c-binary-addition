@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// !!! Comment/uncomment this to switch realization !!!
+// !!! Comment/uncomment this to switch implementation !!!
 // The default state for CMakeLists.txt is to be uncommented, so please revert it back to uncommented.
 // #define USE_UINT64_T_IMPLEMENTATION
 
@@ -21,7 +21,7 @@ int main() {
     fclose(file1);
     fclose(file2);
     LongBinary* result;
-    if (long_binary1 != NULL && long_binary2 != NULL) {
+    if (!long_binary1 && !long_binary2) {
         result = binary_addition(long_binary1, long_binary2);
     } else {
         return 1;
@@ -36,7 +36,7 @@ int main() {
     print_longbinary(result);
     printf("\n");
     LongBinary* result2;
-    if (long_binary1 != NULL && result != NULL) {
+    if (!result) {
         result2 = binary_addition(long_binary1, result);
     } else {
         return 2;
