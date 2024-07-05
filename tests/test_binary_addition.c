@@ -118,7 +118,6 @@ int test_large_binary_addition() {
     LongBinary *long_binary2 = create_longbinary(file2);
     fclose(file1);
     fclose(file2);
-
     if (!long_binary1 || !long_binary2) return 0;
 
     LongBinary *result = binary_addition(long_binary1, long_binary2);
@@ -139,19 +138,17 @@ int test_large_binary_addition() {
 
 int main() {
     int result = 1;
-
     result &= test_create_longbinary();
     result &= test_binary_addition();
     result &= test_triple_binary_addition();
+    result &= test_file_is_null();
     result &= test_string_zeroes_number();
     result &= test_file_is_empty();
     result &= test_large_binary_addition();
-
     if (result) {
         printf("All tests passed.\n");
     } else {
         printf("Some tests failed.\n");
     }
-
     return result ? EXIT_SUCCESS : EXIT_FAILURE;
 }
