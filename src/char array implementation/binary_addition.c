@@ -5,7 +5,7 @@
 
 int free_longbinary(LongBinary* long_binary) {
     if (long_binary == NULL) {
-        fprintf(stderr, "The input for freeing longbinary is null");
+        fprintf(stderr, "The input for freeing longbinary is null\n");
         return 1;
     }
     LongBinaryChunk* chunk = long_binary->first_chunk;
@@ -53,7 +53,7 @@ LongBinary* create_longbinary(FILE* input) {
         if (chunk->length == 0) {
             free(chunk);
             if (previous_chunk == NULL) {
-                fprintf(stderr, "Empty file");
+                fprintf(stderr, "File is empty\n");
                 free(long_binary);
                 return NULL;
             }

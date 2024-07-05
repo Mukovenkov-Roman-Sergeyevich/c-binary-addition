@@ -208,7 +208,7 @@ LongBinary* binary_addition(LongBinary* long_binary1, LongBinary* long_binary2) 
 
 int print_longbinary(LongBinary* long_binary) {
     if (!long_binary) {
-        fprintf(stderr, "The long binary to be printed is null");
+        fprintf(stderr, "The long binary to be printed is null\n");
         return 1;
     }
     LongBinaryChunk* chunk = long_binary->first_chunk;
