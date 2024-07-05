@@ -9,4 +9,6 @@ Inputting of strings is done via files. You can use some other functions to turn
 
 You can also specify your power of two (uint64_t implementation) to your liking. Though 63 is the most efficient, since it still uses uint64_t regardless.
 
+Debugged for memory leaks with Valgrind.
+
 Testing and build provided by CMake build system.
