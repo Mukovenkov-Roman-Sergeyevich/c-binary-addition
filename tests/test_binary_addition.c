@@ -111,6 +111,32 @@ int test_file_is_empty() {
     return !long_binary;
 }
 
+int test_large_binary_addition() {
+    FILE* file1 = fopen("../tests/test_strings/test_large_input1.txt", "r");
+    FILE* file2 = fopen("../tests/test_strings/test_large_input2.txt", "r");
+    LongBinary *long_binary1 = create_longbinary(file1);
+    LongBinary *long_binary2 = create_longbinary(file2);
+    fclose(file1);
+    fclose(file2);
+
+    if (!long_binary1 || !long_binary2) return 0;
+
+    LongBinary *result = binary_addition(long_binary1, long_binary2);
+    if (!result) return 0;
+
+    char* result_string = long_binary_to_string(result);
+    if (!result_string) return 0;
+
+    int test_result = strcmp(result_string, "1010000101100000110000111010101110101111111001010101111110111010001100010000111011011001001011011001000001100010110110011001011011010010110110011110111010011111100111111010000010011010000100101010011100011100011100100010101100100110100111101101000111011011011000010101000101010001101001") == 0;
+
+    free(result_string);
+    free_longbinary(long_binary1);
+    free_longbinary(long_binary2);
+    free_longbinary(result);
+
+    return test_result;
+}
+
 int main() {
     int result = 1;
 
@@ -119,6 +145,7 @@ int main() {
     result &= test_triple_binary_addition();
     result &= test_string_zeroes_number();
     result &= test_file_is_empty();
+    result &= test_large_binary_addition();
 
     if (result) {
         printf("All tests passed.\n");
